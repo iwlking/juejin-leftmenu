@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "掘金沸点左侧导航",
+  "version": "0.1.0",
+  "description": "在沸点页左侧栏注入常用入口菜单，隐藏中栏的重复导航",
+  "content_scripts": [
+    {
+      "matches": ["https://juejin.cn/pins/*"],
+      "css": ["src/content.css"],
+      "js": ["src/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

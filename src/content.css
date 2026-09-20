@@ -1,0 +1,52 @@
+/* 掘金沸点左侧导航菜单
+   设计文档：docs/superpowers/specs/2026-09-20-juejin-pins-layout-design.md */
+
+/* ── 自定义菜单 ─────────────────────────────────────────────
+   class 以 jjp- 前缀隔离命名空间，不会命中掘金的 scoped 规则，
+   因此无需 !important。 */
+
+.jjp-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.jjp-menu__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4e5969;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .2s, color .2s;
+}
+
+.jjp-menu__item:hover {
+  background-color: #f4f5f5;
+  color: #1e80ff;
+}
+
+.jjp-menu__item.is-active {
+  background-color: #eaf2ff;
+  color: #1e80ff;
+  font-weight: 500;
+}
+
+/* ── 隐藏中栏重复导航 ───────────────────────────────────────
+   用 CSS 而非 JS：Vue 重建该节点时样式自动重新命中，不需要监听，
+   也不会出现「隐藏状态丢失」。
+
+   这里必须用 !important：要整块移除的是一个完整组件，display 由
+   掘金自己的 scoped 规则控制，不强制覆盖压不住。这是全文件唯一
+   使用 !important 的地方。 */
+
+.main-container .feed-controls {
+  display: none !important;
+}
